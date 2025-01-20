@@ -4,7 +4,7 @@ async function getUser(email) {
     try{
         await cliente.connect()
 
-        const resultado = await cliente.query("SELECT * FROM users WHERE email = '"+email+"';")
+        const resultado = await cliente.query(`SELECT * FROM users WHERE email = $1`, [email])
 
         if(resultado.rows.length > 0) { //rows.length representa as linhas do DB, se === 0, significa que não existe nenhuma linha com esse email
             console.table(resultado.rows)
@@ -31,7 +31,7 @@ async function creatUser(userName, email, password){
 
         const userId = Math.floor(1000 + Math.random() * 9000)
 
-        await cliente.query('INSERT INTO users ("username", "email", "password", "id_identifier") values ('+"'"+userName+"', '"+email+"', '"+password+"', '"+userId+"');")
+        await cliente.query(`INSERT INTO users ($1, $2, $3, $4)`, [userName, email, password, userId])
 
         const resultado = await cliente.query('SELECT * FROM users')
         console.table(resultado.rows)
@@ -78,13 +78,13 @@ async function updateName(newName, email) {
     try{
         await cliente.connect()
 
-        const resultado = await cliente.query ("UPDATE users SET username = '"+newName+"' WHERE email = '"+email+"';")
+        const resultado = await cliente.query (`UPDATE users SET username = $1 WHERE email = $2`, [newName, email])
 
         if (resultado.rowCount === 0) {
             console.log('Email não encontrado')
         } 
         else {
-            const newUser = await cliente.query("SELECT * FROM users WHERE email = '"+email+"';")
+            const newUser = await cliente.query(`SELECT * FROM users WHERE email = $1`, [email])
             console.table(newUser.rows)
         }
     }
@@ -103,14 +103,14 @@ async function updateMail(newEmail, email) {
     try{
         await cliente.connect()
 
-        const resultado = await cliente.query("UPDATE users SET email = '"+newEmail+"' WHERE email = '"+email+"';")
+        const resultado = await cliente.query(`UPDATE users SET email = $1 WHERE email = $2`, [newEmail, email])
 
         if(resultado.rowCount === 0) {
             console.log('Email não existe!')
         }
 
         else{
-            const Emailnew = await cliente.query("SELECT * FROM users WHERE email = '"+newEmail+"';")
+            const Emailnew = await cliente.query(`SELECT * FROM users WHERE email = $1`, [newEmail])
             console.table(Emailnew.rows)
         }
     }
@@ -129,14 +129,14 @@ async function updatePassword(email, newPassword) {
     try{ 
         await cliente.connect()
 
-        const resultado = await cliente.query("UPDATE users SET password = '"+newPassword+"' WHERE email = '"+email+"';")
+        const resultado = await cliente.query(`UPDATE users SET password = $1 WHERE email = $2`, [newPassword, email])
 
         if(resultado.rowCount === 0) {
             console.log('Email não existe!')
         }
 
         else{
-            const newPassword = await cliente.query("SELECT * FROM users WHERE email = '"+email+"';")
+            const newPassword = await cliente.query(`SELECT * FROM users WHERE email = $1`, [email])
             console.table(newPassword.rows)
         }
     }
@@ -155,7 +155,7 @@ async function delUser(iduser) {
     try {
         await cliente.connect()
 
-        await cliente.query("DELETE FROM users WHERE id_identifier = '"+iduser+"';")
+        await cliente.query(`DELETE FROM users WHERE id_identifier = $1`, [iduser])
 
         const resultado = await cliente.query('SELECT * FROM users')
         console.table(resultado.rows)
