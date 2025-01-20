@@ -1,4 +1,4 @@
-const cliente = require('../config/db')
+import {cliente} from '../config/db.js'
 
 async function getReservation() {
     try{
@@ -99,7 +99,7 @@ async function upReservation(idreservation, newId, newRestaurant, newPerson, new
     }
 }
 
-module.exports = {
+export {
     getReservation,
     insertReservation,
     delReservation,

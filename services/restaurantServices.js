@@ -1,4 +1,4 @@
-const cliente = require('../config/db')
+import { cliente } from "../config/db.js"
 
 async function getRestaurant() {
     try{
@@ -82,7 +82,7 @@ async function upRestaurant(idrestaurant, newId) {
     }
 }
 
-module.exports = {
+export {
     getRestaurant,
     insertRestaurant,
     delRestaurant,

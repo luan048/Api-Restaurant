@@ -1,4 +1,4 @@
-const cliente = require('../config/db')
+import { cliente } from "../config/db.js"
 
 async function getUser(email) {
     try{
@@ -171,7 +171,7 @@ async function delUser(iduser) {
     }
 }
 
-module.exports = {
+export {
     getUser,
     creatUser,
     userValidation,

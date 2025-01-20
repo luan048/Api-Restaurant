@@ -1,5 +1,5 @@
-const Client = require('pg').Client
-const dotenv = require('dotenv')
+import { Client } from 'pg'
+import dotenv from 'dotenv'
 
 dotenv.config()
 
@@ -11,4 +11,4 @@ const cliente = new Client({
     database: process.env.DB_DATABASE
 })
 
-module.exports = cliente
+export {cliente}
