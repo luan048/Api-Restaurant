@@ -24,7 +24,7 @@ async function insertRestaurant(restaurantname, quantable) {
 
         const restaurantId = Math.floor(10000 + Math.random() * 90000)
 
-        await cliente.query('INSERT INTO restaurant("restaurantname", "quantable", "id_identifier") values ('+"'"+restaurantname+"', '"+quantable+"', '"+restaurantId+"');")
+        await cliente.query(`INSERT INTO restaurant ($1, $2, $3)`, [restaurantname, quantable, restaurantId])
         console.log('Valor inserido na tabela')
 
         const resultado = await cliente.query('SELECT * FROM restaurant')
@@ -45,7 +45,7 @@ async function delRestaurant(id_identifier) {
     try{
         await cliente.connect()
 
-        await cliente.query("DELETE FROM restaurant WHERE id_identifier = '"+id_identifier+"';")
+        await cliente.query(`DELETE FROM restaurant WHERE id_identifier = $1`, [id_identifier])
         console.log('Restaurante removido da tabela')
 
         const resultado = await cliente.query('SELECT * FROM restaurant')
@@ -66,7 +66,7 @@ async function upRestaurant(idrestaurant, newId) {
     try{
         await cliente.connect()
 
-        await cliente.query("UPDATE restaurant SET idrestaurant = '"+newId+"' WHERE idrestaurant = '"+idrestaurant+"'; ")
+        await cliente.query(`UPDATE restaurant SET idrestaurant = $1 WHERE idrestaurant = $2`, [newId, idrestaurant])
 
         const resultado = await cliente.query('SELECT * FROM restaurant')
         console.table(resultado.rows)
