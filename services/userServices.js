@@ -49,14 +49,12 @@ export class UserService {
         }
     }
 
-    async userValidation(email, password) { //É para LOGIN
+    async userValidation(email, password) { // Usado para LOGIN
         try {
             await cliente.connect()
 
-            const query = 'SELECT * FROM users WHERE email = $1'
-            const values = [email];
-            const result = await cliente.query(query, values);
-            const user = result.rows[0];
+            const result = await cliente.query(`SELECT * FROM users WHERE email = $1`, [email])
+            const user = result.rows[0]
 
             if (!user || user.password !== password) {
                 console.log('Email ou senha incorretos')
