@@ -11,15 +11,16 @@ routerUser.post("/users", async(req, res) => {
     return await creatUser(req, res)
 })
 
+routerUser.delete("/users", async(req, res) => {
+    return await delUser(req, res)
+})
+
 // Valida Usuário
 routerUser.post("/users", async(req, res) => {
     return await userValidation(req, res)
 })
-//
 
-routerUser.delete("/users", async(req, res) => {
-    return await delUser(req, res)
-})
+// Métodos para Atualização
 
 routerUser.post("/users", async(req, res) => {
     return await updateName(req, res)
@@ -32,3 +33,5 @@ routerUser.post("/users", async(req, res) => {
 routerUser.post("/users", async(req, res) => {
     return await updatePassword(req, res)
 })
+
+export {routerUser}
