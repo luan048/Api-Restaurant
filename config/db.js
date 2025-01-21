@@ -1,7 +1,9 @@
-import { Client } from 'pg'
-import dotenv from 'dotenv'
+import pkg  from 'pg'
 
+import dotenv from 'dotenv'
 dotenv.config()
+
+const {Client} = pkg
 
 const cliente = new Client({
     user: process.env.DB_USER,
