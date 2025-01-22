@@ -10,8 +10,8 @@ export class ReservationService {
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -32,7 +32,7 @@ export class ReservationService {
                 if (resultUser.rows.length > 0) {
                     const id_reservation = Math.floor(10000 + Math.random() * 90000)
 
-                    await cliente.query(`INSERT INTO reservation ($1, $2, $3, $4, $5, $6)`, [id_reservation, namerestaurant, nameperson, numbertable, quantperson, hour])
+                    await cliente.query(`INSERT INTO reservation (id_reservation, namerestaurant, nameperson, numbertable, quantperson, hour) VALUES ($1, $2, $3, $4, $5, $6)`, [id_reservation, namerestaurant, nameperson, numbertable, quantperson, hour])
                     console.log('Valor inserido na tabela')
 
                     const resultado = await cliente.query('SELECT * FROM reservation')
@@ -49,8 +49,8 @@ export class ReservationService {
             }
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -70,8 +70,8 @@ export class ReservationService {
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -91,8 +91,8 @@ export class ReservationService {
             console.log('Valor atualizado na tabela')
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro:' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro:' + error)
         }
 
         finally {

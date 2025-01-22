@@ -17,8 +17,8 @@ export class UserService {
             }
         }
 
-        catch (ex) {
-            console.log('Ocorreu um erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu um erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -33,14 +33,14 @@ export class UserService {
 
             const userId = Math.floor(1000 + Math.random() * 9000)
 
-            await cliente.query(`INSERT INTO users ($1, $2, $3, $4)`, [userName, email, password, userId])
+            await cliente.query(`INSERT INTO users (userName, email, password, id_identifier) VALUES ($1, $2, $3, $4)`, [userName, email, password, userId])
 
             const resultado = await cliente.query('SELECT * FROM users')
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu um erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu um erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -64,8 +64,8 @@ export class UserService {
                 console.log('Logado com sucesso!')
             }
         }
-        catch (ex) {
-            console.log('Erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -89,8 +89,8 @@ export class UserService {
             }
         }
 
-        catch (ex) {
-            console.log('Erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -115,8 +115,8 @@ export class UserService {
             }
         }
 
-        catch (ex) {
-            console.log('Erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -141,8 +141,8 @@ export class UserService {
             }
         }
 
-        catch (ex) {
-            console.log('Erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -161,8 +161,8 @@ export class UserService {
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Erro ao conectar-se. Erro: ' + error)
         }
 
         finally {

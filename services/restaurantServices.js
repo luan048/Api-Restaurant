@@ -10,8 +10,8 @@ export class RestaurantService {
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu um erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu um erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -26,15 +26,15 @@ export class RestaurantService {
 
             const restaurantId = Math.floor(10000 + Math.random() * 90000)
 
-            await cliente.query(`INSERT INTO restaurant ($1, $2, $3)`, [restaurantname, quantable, restaurantId])
+            await cliente.query(`INSERT INTO restaurant (restaurantname, quantable, id_identifier) VALUES ($1, $2, $3)`, [restaurantname, quantable, restaurantId])
             console.log('Valor inserido na tabela')
 
             const resultado = await cliente.query('SELECT * FROM restaurant')
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu um erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu um erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -54,8 +54,8 @@ export class RestaurantService {
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
@@ -64,18 +64,18 @@ export class RestaurantService {
         }
     }
 
-    async upRestaurant(idrestaurant, newId) {
+    async upRestaurant(id_identifier, newId) {
         try {
             await cliente.connect()
 
-            await cliente.query(`UPDATE restaurant SET idrestaurant = $1 WHERE idrestaurant = $2`, [newId, idrestaurant])
+            await cliente.query(`UPDATE restaurant SET id_identifier = $1 WHERE id_identifier = $2`, [newId, id_identifier])
 
             const resultado = await cliente.query('SELECT * FROM restaurant')
             console.table(resultado.rows)
         }
 
-        catch (ex) {
-            console.log('Ocorreu erro ao conectar-se. Erro: ' + ex)
+        catch (error) {
+            console.log('Ocorreu erro ao conectar-se. Erro: ' + error)
         }
 
         finally {
