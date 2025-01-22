@@ -16,7 +16,7 @@ routerUser.delete("/users", async(req, res) => {
 })
 
 // Valida Usuário
-routerUser.post("/users", async(req, res) => {
+routerUser.post("/usersLogin", async(req, res) => {
     return await userValidation(req, res)
 })
 

@@ -8,6 +8,7 @@ export class RestaurantService {
 
             const resultado = await cliente.query('SELECT * FROM restaurant')
             console.table(resultado.rows)
+            return resultado.rows
         }
 
         catch (error) {

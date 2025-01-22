@@ -8,6 +8,7 @@ export class ReservationService {
 
             const resultado = await cliente.query('SELECT * FROM reservation')
             console.table(resultado.rows)
+            return resultado.rows
         }
 
         catch (error) {

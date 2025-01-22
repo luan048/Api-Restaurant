@@ -10,6 +10,7 @@ export class UserService {
 
             if (resultado.rows.length > 0) { //rows.length representa as linhas do DB, se === 0, significa que não existe nenhuma linha com esse email
                 console.table(resultado.rows)
+                return resultado.rows
             }
 
             else {
